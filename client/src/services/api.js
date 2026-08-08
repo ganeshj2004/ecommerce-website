@@ -2,8 +2,9 @@ import axios from 'axios';
 
 // In production (Vercel), VITE_API_URL points to the Railway backend.
 // In development (localhost), Vite proxy rewrites /api → http://localhost:5000/api
+const rawApiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
+  baseURL: rawApiUrl ? `${rawApiUrl}/api` : '/api',
 });
 
 // Request Interceptor: Attach JWT Token if present

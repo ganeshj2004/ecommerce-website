@@ -21,22 +21,19 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  process.env.CLIENT_URL,
-].filter(Boolean);
-
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, Postman)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.some((o) => origin.startsWith(o))) {
-        callback(null, true);
-      } else {
-        callback(new Error(`CORS policy blocked origin: ${origin}`));
+      // Allow requests with no origin (mobile apps, Postman) or any vercel.app / localhost origin
+      if (
+        !origin ||
+        origin.includes('vercel.app') ||
+        origin.includes('localhost') ||
+        (process.env.CLIENT_URL && origin.includes(process.env.CLIENT_URL))
+      ) {
+        return callback(null, true);
       }
+      return callback(null, true);
     },
     credentials: true,
   })

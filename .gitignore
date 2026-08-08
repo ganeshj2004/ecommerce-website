@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment Variables - NEVER commit these!
+.env
+server/.env
+client/.env
+
+# Build output
+client/dist/
+client/build/
+
+# Uploaded images (stored on Cloudinary in production)
+server/uploads/*
+!server/uploads/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

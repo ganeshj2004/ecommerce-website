@@ -1,0 +1,146 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Box, Container, Grid, Typography, Button, TextField, Divider, IconButton } from '@mui/material';
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import SendIcon from '@mui/icons-material/Send';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
+
+import { useSettings } from '../context/SettingsContext';
+
+const Footer = () => {
+  const { settings } = useSettings();
+
+  return (
+    <Box
+      component="footer"
+      sx={{
+        backgroundColor: '#0B192C',
+        color: '#94A3B8',
+        pt: 8,
+        pb: 4,
+        mt: 10,
+        borderTop: '1px solid #1E293B',
+      }}
+    >
+      <Container maxWidth="xl">
+        <Grid container spacing={4} sx={{ mb: 6 }}>
+          {/* Brand Info */}
+          <Grid item xs={12} md={4}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
+              <WaterDropIcon sx={{ color: '#00B4D8', fontSize: 32 }} />
+              <Typography variant="h5" className="brand-font" sx={{ color: '#ffffff', fontWeight: 800 }}>
+                {settings.company_name}
+              </Typography>
+            </Box>
+            <Typography variant="body2" sx={{ lineHeight: 1.7, mb: 3, pr: { md: 4 } }}>
+              {settings.company_tagline || 'Eco-luxury insulated water bottles and borosilicate glass vessels engineered for peak hydration retention.'}
+            </Typography>
+
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <IconButton sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}>
+                <InstagramIcon fontSize="small" />
+              </IconButton>
+              <IconButton sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}>
+                <TwitterIcon fontSize="small" />
+              </IconButton>
+              <IconButton sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}>
+                <FacebookIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          </Grid>
+
+          {/* Quick Links */}
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography variant="subtitle1" sx={{ color: '#ffffff', fontWeight: 700, mb: 2.5 }}>
+              Shop Catalog
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <Typography component={Link} to="/products" sx={{ color: '#94A3B8', textDecoration: 'none', '&:hover': { color: '#00B4D8' } }}>
+                All Bottles
+              </Typography>
+              <Typography component={Link} to="/products?category_id=1" sx={{ color: '#94A3B8', textDecoration: 'none', '&:hover': { color: '#00B4D8' } }}>
+                Thermal Insulated
+              </Typography>
+              <Typography component={Link} to="/products?category_id=2" sx={{ color: '#94A3B8', textDecoration: 'none', '&:hover': { color: '#00B4D8' } }}>
+                Borosilicate Glass
+              </Typography>
+              <Typography component={Link} to="/products?category_id=3" sx={{ color: '#94A3B8', textDecoration: 'none', '&:hover': { color: '#00B4D8' } }}>
+                Smart UV Canteens
+              </Typography>
+            </Box>
+          </Grid>
+
+          {/* Contact Details */}
+          <Grid item xs={6} sm={3} md={3}>
+            <Typography variant="subtitle1" sx={{ color: '#ffffff', fontWeight: 700, mb: 2.5 }}>
+              Contact Us
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <PhoneOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20 }} />
+                <Typography variant="body2">{settings.phone}</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <EmailOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20 }} />
+                <Typography variant="body2">{settings.email}</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
+                <LocationOnOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20, mt: 0.2 }} />
+                <Typography variant="body2">{settings.address}</Typography>
+              </Box>
+            </Box>
+          </Grid>
+
+          {/* Newsletter */}
+          <Grid item xs={12} md={3}>
+            <Typography variant="subtitle1" sx={{ color: '#ffffff', fontWeight: 700, mb: 2 }}>
+              Stay Hydrated & Updated
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              Subscribe for exclusive bottle releases and hydration tips.
+            </Typography>
+            <Box component="form" onSubmit={(e) => e.preventDefault()} sx={{ display: 'flex', gap: 1 }}>
+              <TextField
+                placeholder="Enter your email"
+                size="small"
+                variant="outlined"
+                sx={{
+                  bgcolor: '#1E293B',
+                  borderRadius: '25px',
+                  input: { color: '#fff' },
+                  '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
+                }}
+              />
+              <Button type="submit" className="btn-gradient" sx={{ minWidth: '46px', px: 1.5, borderRadius: '50%' }}>
+                <SendIcon fontSize="small" />
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+
+        <Divider sx={{ borderColor: '#1E293B', mb: 3 }} />
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
+          <Typography variant="caption">
+            © {new Date().getFullYear()} {settings.company_name}. All rights reserved. Built with React & Node.js.
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 3 }}>
+            <Typography component={Link} to="/about" variant="caption" sx={{ color: '#94A3B8', textDecoration: 'none', '&:hover': { color: '#00B4D8' } }}>
+              Privacy Policy
+            </Typography>
+            <Typography component={Link} to="/about" variant="caption" sx={{ color: '#94A3B8', textDecoration: 'none', '&:hover': { color: '#00B4D8' } }}>
+              Terms of Service
+            </Typography>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
+  );
+};
+
+export default Footer;

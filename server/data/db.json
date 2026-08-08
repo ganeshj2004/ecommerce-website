@@ -1,0 +1,249 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "created_at": "2026-08-08T06:25:30.753Z",
+      "name": "Admin User",
+      "email": "admin@aquacraft.com",
+      "password": "$2a$10$.tUw3FBXnqiREy2zvo1B8Or4PW4hkwYYUIP4bf0j4L9DX6iPdErfO",
+      "role": "admin",
+      "phone": "+1 800-555-0199"
+    },
+    {
+      "id": 2,
+      "created_at": "2026-08-08T06:25:30.760Z",
+      "name": "Jane Doe",
+      "email": "user@aquacraft.com",
+      "password": "$2a$10$BRaF2aIzUnbA.OULauHe1Op88lHbA.3kT9AnKUu/CN13mPrraXKRi",
+      "role": "user",
+      "phone": "+1 800-555-0144"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "created_at": "2026-08-08T06:25:30.765Z",
+      "name": "Insulated Thermal Bottles",
+      "slug": "insulated-thermal",
+      "description": "Double-wall vacuum insulated steel flasks that keep beverages ice cold for 24h or hot for 12h.",
+      "image_url": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80"
+    },
+    {
+      "id": 2,
+      "created_at": "2026-08-08T06:25:30.769Z",
+      "name": "Eco Borosilicate Glass",
+      "slug": "eco-borosilicate-glass",
+      "description": "Pure taste experience with high-durability thermal glass and protective non-slip silicone sleeves.",
+      "image_url": "https://images.unsplash.com/photo-1556881286-fc6915169721?w=600&q=80"
+    },
+    {
+      "id": 3,
+      "created_at": "2026-08-08T06:25:30.772Z",
+      "name": "Smart UV Hydration",
+      "slug": "smart-uv-hydration",
+      "description": "Self-cleaning bottles equipped with UV-C purification caps and intelligent hydration reminders.",
+      "image_url": "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=600&q=80"
+    },
+    {
+      "id": 4,
+      "created_at": "2026-08-08T06:25:30.775Z",
+      "name": "Sports & Gym Shakers",
+      "slug": "sports-gym-shakers",
+      "description": "High-flow sports lids, leak-proof locking mechanisms, and lightweight Tritan designs.",
+      "image_url": "https://images.unsplash.com/photo-1570831739435-660143a4e5d5?w=600&q=80"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "created_at": "2026-08-08T06:25:30.781Z",
+      "category_id": 1,
+      "name": "HydroShield Pro Thermo 1000ml",
+      "slug": "hydroshield-pro-thermo-1000ml",
+      "description": "Triple-insulated 18/8 pro-grade stainless steel bottle with sweat-free powder finish and leakproof straw lid.",
+      "price": 39.99,
+      "stock": 45,
+      "capacity": "1000 ml",
+      "material": "Pro 18/8 Stainless Steel",
+      "color": "Midnight Black",
+      "image_url": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80",
+      "is_featured": 1
+    },
+    {
+      "id": 2,
+      "created_at": "2026-08-08T06:25:30.784Z",
+      "category_id": 1,
+      "name": "TitanThermo Vacuum Flask 1200ml",
+      "slug": "titanthermo-vacuum-flask-1200ml",
+      "description": "Rugged outdoor canteen flask engineered for extreme thermal preservation. Keeps soup hot for 18h and water ice-cold for 36h.",
+      "price": 49.99,
+      "stock": 25,
+      "capacity": "1200 ml",
+      "material": "Vacuum Steel",
+      "color": "Forest Green",
+      "image_url": "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=800&q=80",
+      "is_featured": 1
+    },
+    {
+      "id": 3,
+      "created_at": "2026-08-08T06:25:30.788Z",
+      "category_id": 2,
+      "name": "GlassPure Artisan Sleeve 750ml",
+      "slug": "glasspure-artisan-sleeve-750ml",
+      "description": "Thermal shock-resistant borosilicate glass wrapped in food-grade protective silicone. Zero plastic taste.",
+      "price": 24.99,
+      "stock": 60,
+      "capacity": "750 ml",
+      "material": "Borosilicate Glass",
+      "color": "Ocean Blue",
+      "image_url": "https://images.unsplash.com/photo-1556881286-fc6915169721?w=800&q=80",
+      "is_featured": 1
+    },
+    {
+      "id": 4,
+      "created_at": "2026-08-08T06:25:30.792Z",
+      "category_id": 2,
+      "name": "EcoBamboo Fusion Glass 600ml",
+      "slug": "ecobamboo-fusion-glass-600ml",
+      "description": "Sleek eco-friendly bottle featuring an organic bamboo lid, stainless steel infuser, and crystal clear glass body.",
+      "price": 28.5,
+      "stock": 40,
+      "capacity": "600 ml",
+      "material": "Glass & Bamboo",
+      "color": "Natural Wood",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80",
+      "is_featured": 0
+    },
+    {
+      "id": 5,
+      "created_at": "2026-08-08T06:25:30.797Z",
+      "category_id": 3,
+      "name": "SmartClean UV-C Purifier 800ml",
+      "slug": "smartclean-uvc-purifier-800ml",
+      "description": "Deep UV-C light cap neutralizes 99.99% of bacteria and viruses in 60 seconds. Touchscreen cap displays water temperature.",
+      "price": 69.99,
+      "stock": 30,
+      "capacity": "800 ml",
+      "material": "Insulated Stainless Steel",
+      "color": "Starlight Silver",
+      "image_url": "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&q=80",
+      "is_featured": 1
+    },
+    {
+      "id": 6,
+      "created_at": "2026-08-08T06:25:30.801Z",
+      "category_id": 4,
+      "name": "AeroSport Flex Gym Flask 900ml",
+      "slug": "aerosport-flex-gym-flask-900ml",
+      "description": "Impact-resistant Tritan bottle with rapid-flow spout, integrated carrying loop, and volumetric measurement markers.",
+      "price": 19.99,
+      "stock": 80,
+      "capacity": "900 ml",
+      "material": "BPA-Free Tritan",
+      "color": "Crimson Red",
+      "image_url": "https://images.unsplash.com/photo-1570831739435-660143a4e5d5?w=800&q=80",
+      "is_featured": 0
+    },
+    {
+      "id": 7,
+      "created_at": "2026-08-08T06:25:30.805Z",
+      "category_id": 1,
+      "name": "ArcticChill Slim Tumbler 650ml",
+      "slug": "arcticchill-slim-tumbler-650ml",
+      "description": "Cup-holder friendly slim insulated bottle with magnetic pop cap and durable powder coating.",
+      "price": 32,
+      "stock": 50,
+      "capacity": "650 ml",
+      "material": "Stainless Steel",
+      "color": "Rose Quartz",
+      "image_url": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=800&q=80",
+      "is_featured": 1
+    },
+    {
+      "id": 8,
+      "created_at": "2026-08-08T06:25:30.808Z",
+      "category_id": 4,
+      "name": "HydroPulse Chug Bottle 1500ml",
+      "slug": "hydropulse-chug-bottle-1500ml",
+      "description": "High capacity daily hydration gallon-style bottle with ergonomic handle and wide mouth for ice cubes.",
+      "price": 29.99,
+      "stock": 35,
+      "capacity": "1500 ml",
+      "material": "Heavy Duty Tritan",
+      "color": "Matte Grey",
+      "image_url": "https://images.unsplash.com/photo-1536939459926-301728717817?w=800&q=80",
+      "is_featured": 0
+    }
+  ],
+  "cart": [],
+  "orders": [],
+  "order_items": [],
+  "settings": [
+    {
+      "id": 1,
+      "created_at": "2026-08-08T06:25:30.875Z",
+      "key_name": "company_name",
+      "key_value": "AquaCraft Bottles"
+    },
+    {
+      "id": 2,
+      "created_at": "2026-08-08T06:25:30.881Z",
+      "key_name": "company_tagline",
+      "key_value": "Hydrate in Style, Sustain the Planet"
+    },
+    {
+      "id": 3,
+      "created_at": "2026-08-08T06:25:30.887Z",
+      "key_name": "company_logo",
+      "key_value": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300&q=80"
+    },
+    {
+      "id": 4,
+      "created_at": "2026-08-08T06:25:30.893Z",
+      "key_name": "hero_title",
+      "key_value": "Elevate Your Hydration with Eco-Luxury Bottles"
+    },
+    {
+      "id": 5,
+      "created_at": "2026-08-08T06:25:30.899Z",
+      "key_name": "hero_subtitle",
+      "key_value": "100% BPA-Free vacuum insulated thermo flasks & eco borosilicate glass bottles designed for peak performance and style."
+    },
+    {
+      "id": 6,
+      "created_at": "2026-08-08T06:25:30.905Z",
+      "key_name": "hero_banner",
+      "key_value": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=1200&q=80"
+    },
+    {
+      "id": 7,
+      "created_at": "2026-08-08T06:25:30.911Z",
+      "key_name": "about_us",
+      "key_value": "AquaCraft Bottles is dedicated to crafting premium, sustainable hydration vessels that keep your drinks ice-cold for 24 hours or steaming hot for 12 hours. Designed with 18/8 pro-grade stainless steel and borosilicate glass, our bottles eliminate single-use plastic waste while looking impeccably modern."
+    },
+    {
+      "id": 8,
+      "created_at": "2026-08-08T06:25:30.916Z",
+      "key_name": "phone",
+      "key_value": "+1 (800) 555-AQUA"
+    },
+    {
+      "id": 9,
+      "created_at": "2026-08-08T06:25:30.922Z",
+      "key_name": "email",
+      "key_value": "support@aquacraftbottles.com"
+    },
+    {
+      "id": 10,
+      "created_at": "2026-08-08T06:25:30.928Z",
+      "key_name": "address",
+      "key_value": "742 Evergreen Hydration Way, Suite 400, San Francisco, CA 94107"
+    },
+    {
+      "id": 11,
+      "created_at": "2026-08-08T06:25:30.935Z",
+      "key_name": "free_shipping_min",
+      "key_value": "50"
+    }
+  ]
+}

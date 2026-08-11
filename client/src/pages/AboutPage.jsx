@@ -111,7 +111,24 @@ const AboutPage = () => {
               </Avatar>
               <Box>
                 <Typography variant="caption" color="text.secondary">Phone Line</Typography>
-                <Typography variant="body1" sx={{ fontWeight: 700 }}>{settings.phone}</Typography>
+                {settings.phone ? (
+                  <Typography
+                    component="a"
+                    href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`}
+                    variant="body1"
+                    sx={{
+                      fontWeight: 700,
+                      color: '#0F4C81',
+                      textDecoration: 'none',
+                      display: 'block',
+                      '&:hover': { color: '#00B4D8', textDecoration: 'underline' },
+                    }}
+                  >
+                    {settings.phone}
+                  </Typography>
+                ) : (
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>—</Typography>
+                )}
               </Box>
             </Stack>
           </Grid>
@@ -123,7 +140,24 @@ const AboutPage = () => {
               </Avatar>
               <Box>
                 <Typography variant="caption" color="text.secondary">Email Support</Typography>
-                <Typography variant="body1" sx={{ fontWeight: 700 }}>{settings.email}</Typography>
+                {settings.email ? (
+                  <Typography
+                    component="a"
+                    href={`mailto:${settings.email.trim()}`}
+                    variant="body1"
+                    sx={{
+                      fontWeight: 700,
+                      color: '#0F4C81',
+                      textDecoration: 'none',
+                      display: 'block',
+                      '&:hover': { color: '#00B4D8', textDecoration: 'underline' },
+                    }}
+                  >
+                    {settings.email}
+                  </Typography>
+                ) : (
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>—</Typography>
+                )}
               </Box>
             </Stack>
           </Grid>

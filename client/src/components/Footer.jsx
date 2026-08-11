@@ -128,11 +128,43 @@ const Footer = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <PhoneOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20 }} />
-                <Typography variant="body2">{settings.phone}</Typography>
+                {settings.phone ? (
+                  <Typography
+                    component="a"
+                    href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`}
+                    variant="body2"
+                    sx={{
+                      color: '#94A3B8',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s',
+                      '&:hover': { color: '#00B4D8' },
+                    }}
+                  >
+                    {settings.phone}
+                  </Typography>
+                ) : (
+                  <Typography variant="body2">—</Typography>
+                )}
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <EmailOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20 }} />
-                <Typography variant="body2">{settings.email}</Typography>
+                {settings.email ? (
+                  <Typography
+                    component="a"
+                    href={`mailto:${settings.email.trim()}`}
+                    variant="body2"
+                    sx={{
+                      color: '#94A3B8',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s',
+                      '&:hover': { color: '#00B4D8' },
+                    }}
+                  >
+                    {settings.email}
+                  </Typography>
+                ) : (
+                  <Typography variant="body2">—</Typography>
+                )}
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
                 <LocationOnOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20, mt: 0.2 }} />

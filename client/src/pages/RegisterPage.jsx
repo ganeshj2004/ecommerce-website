@@ -7,10 +7,9 @@ import {
   Typography,
   TextField,
   Button,
-  Avatar,
   Divider,
 } from '@mui/material';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import BrandLogo from '../components/BrandLogo';
 
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
@@ -46,9 +45,7 @@ const RegisterPage = () => {
     <Container maxWidth="xs" sx={{ py: 8 }}>
       <Paper elevation={0} sx={{ p: 4, borderRadius: '24px', border: '1px solid #E2E8F0', bgcolor: '#ffffff' }}>
         <Box sx={{ textAlign: 'center', mb: 3 }}>
-          <Avatar sx={{ bgcolor: '#00B4D8', width: 50, height: 50, mx: 'auto', mb: 1.5 }}>
-            <WaterDropIcon fontSize="large" />
-          </Avatar>
+          <BrandLogo height={50} sx={{ mx: 'auto', mb: 1.5 }} />
           <Typography variant="h5" className="brand-font" sx={{ fontWeight: 800, color: '#0F4C81' }}>
             Create Account
           </Typography>

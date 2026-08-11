@@ -19,7 +19,7 @@ import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
 import RecyclingOutlinedIcon from '@mui/icons-material/RecyclingOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import BrandLogo from '../components/BrandLogo';
 
 import { useSettings } from '../context/SettingsContext';
 import ProductCard from '../components/ProductCard';
@@ -88,7 +88,7 @@ const HomePage = () => {
           <Grid container spacing={{ xs: 3, md: 6 }} alignItems="center">
             <Grid item xs={12} md={6}>
               <Chip
-                icon={<WaterDropIcon style={{ color: '#00B4D8' }} />}
+                icon={<BrandLogo height={18} />}
                 label="Premium Sustainable Hydration"
                 sx={{
                   bgcolor: 'rgba(0, 180, 216, 0.15)',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Typography, Box, Grid, Paper, Avatar, Divider, Stack } from '@mui/material';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import BrandLogo from '../components/BrandLogo';
 import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import EnergySavingsLeafOutlinedIcon from '@mui/icons-material/EnergySavingsLeafOutlined';
@@ -26,9 +26,7 @@ const AboutPage = () => {
           textAlign: 'center',
         }}
       >
-        <Avatar sx={{ bgcolor: '#00B4D8', width: 64, height: 64, mx: 'auto', mb: 2 }}>
-          <WaterDropIcon sx={{ fontSize: 36 }} />
-        </Avatar>
+        <BrandLogo height={64} sx={{ mx: 'auto', mb: 2 }} />
         <Typography variant="h3" className="brand-font" sx={{ fontWeight: 800, mb: 2 }}>
           About {settings.company_name}
         </Typography>

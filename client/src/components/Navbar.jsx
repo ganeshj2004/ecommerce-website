@@ -28,7 +28,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import BrandLogo from './BrandLogo';
 
 import { useSettings } from '../context/SettingsContext';
 import { useAuth } from '../context/AuthContext';
@@ -101,19 +101,16 @@ const Navbar = () => {
                 className="navbar-logo"
                 sx={{
                   height: { xs: 34, sm: 42 },
-                  maxHeight: { xs: 34, sm: 42 },
-                  width: 'auto',
-                  maxWidth: { xs: 80, sm: 120 },
-                  borderRadius: '8px',
-                  objectFit: 'contain',
+                  width: { xs: 34, sm: 42 },
+                  borderRadius: '50%',
+                  objectFit: 'cover',
                   flexShrink: 0,
                   display: 'block',
+                  bgcolor: '#ffffff',
                 }}
               />
             ) : (
-              <Avatar sx={{ bgcolor: '#00B4D8', width: { xs: 34, sm: 40 }, height: { xs: 34, sm: 40 }, flexShrink: 0 }}>
-                <WaterDropIcon sx={{ fontSize: { xs: 20, sm: 24 } }} />
-              </Avatar>
+              <BrandLogo height={{ xs: 34, sm: 40 }} />
             )}
             <Box sx={{ overflow: 'hidden' }}>
               <Typography
@@ -346,9 +343,7 @@ const Navbar = () => {
       >
         <Box sx={{ p: 2.5 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-            <Avatar sx={{ bgcolor: '#00B4D8', width: 36, height: 36 }}>
-              <WaterDropIcon />
-            </Avatar>
+            <BrandLogo height={36} />
             <Typography variant="h6" className="brand-font" sx={{ color: '#0F4C81', fontWeight: 800 }}>
               {settings.company_name}
             </Typography>

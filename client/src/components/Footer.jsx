@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Container, Grid, Typography, Button, TextField, Divider, IconButton } from '@mui/material';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import BrandLogo from './BrandLogo';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
@@ -48,7 +48,7 @@ const Footer = () => {
           {/* Brand Info */}
           <Grid item xs={12} md={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-              <WaterDropIcon sx={{ color: '#00B4D8', fontSize: 32 }} />
+              <BrandLogo height={32} />
               <Typography variant="h5" className="brand-font" sx={{ color: '#ffffff', fontWeight: 800 }}>
                 {settings.company_name}
               </Typography>

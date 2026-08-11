@@ -25,7 +25,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import LogoutIcon from '@mui/icons-material/Logout';
-import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import BrandLogo from './BrandLogo';
 
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
@@ -56,9 +56,7 @@ const AdminLayout = () => {
   const drawerContent = (
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: '#0B192C', color: '#94A3B8' }}>
       <Box sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
-        <Avatar sx={{ bgcolor: '#00B4D8', width: 38, height: 38 }}>
-          <WaterDropIcon />
-        </Avatar>
+        <BrandLogo height={38} />
         <Box>
           <Typography variant="h6" className="brand-font" sx={{ color: '#ffffff', fontWeight: 800, lineHeight: 1.1 }}>
             Admin Panel

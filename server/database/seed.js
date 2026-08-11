@@ -168,6 +168,9 @@ const seedData = async () => {
       ['email', 'support@aquacraftbottles.com'],
       ['address', '742 Evergreen Hydration Way, Suite 400, San Francisco, CA 94107'],
       ['free_shipping_min', '50'],
+      ['social_instagram', 'https://instagram.com'],
+      ['social_facebook', 'https://facebook.com'],
+      ['social_twitter', 'https://twitter.com'],
     ];
 
     for (const [key, val] of defaultSettings) {

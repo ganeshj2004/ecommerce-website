@@ -10,9 +10,13 @@ import {
   Stack,
   Avatar,
   CircularProgress,
+  InputAdornment,
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 import { useSettings } from '../../context/SettingsContext';
 import API from '../../services/api';
@@ -237,6 +241,72 @@ const AdminSettingsPage = () => {
                 name="address"
                 value={formState.address || ''}
                 onChange={handleChange}
+              />
+            </Grid>
+          </Grid>
+
+          <Divider sx={{ mb: 4 }} />
+
+          {/* Section 4: Social Media Links */}
+          <Typography variant="h6" sx={{ fontWeight: 800, color: '#0F4C81', mb: 2 }}>
+            4. Social Media Links
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            Enter your social media URLs below. If a field is left empty, its corresponding icon will be hidden on the website.
+          </Typography>
+
+          <Grid container spacing={3} sx={{ mb: 4 }}>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                fullWidth
+                label="Instagram URL"
+                name="social_instagram"
+                placeholder="https://instagram.com/yourhandle"
+                value={formState.social_instagram || ''}
+                onChange={handleChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <InstagramIcon sx={{ color: '#E4405F' }} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <TextField
+                fullWidth
+                label="Facebook URL"
+                name="social_facebook"
+                placeholder="https://facebook.com/yourpage"
+                value={formState.social_facebook || ''}
+                onChange={handleChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FacebookIcon sx={{ color: '#1877F2' }} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <TextField
+                fullWidth
+                label="Twitter / X URL"
+                name="social_twitter"
+                placeholder="https://twitter.com/yourhandle"
+                value={formState.social_twitter || ''}
+                onChange={handleChange}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <TwitterIcon sx={{ color: '#1DA1F2' }} />
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
           </Grid>

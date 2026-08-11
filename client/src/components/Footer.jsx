@@ -12,8 +12,24 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 
 import { useSettings } from '../context/SettingsContext';
 
+const formatExternalUrl = (url) => {
+  if (!url) return '';
+  const trimmed = String(url).trim();
+  if (!trimmed) return '';
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+};
+
 const Footer = () => {
   const { settings } = useSettings();
+
+  const instagramUrl = formatExternalUrl(settings.social_instagram);
+  const twitterUrl = formatExternalUrl(settings.social_twitter);
+  const facebookUrl = formatExternalUrl(settings.social_facebook);
+
+  const hasSocialLinks = Boolean(instagramUrl || twitterUrl || facebookUrl);
 
   return (
     <Box
@@ -41,17 +57,46 @@ const Footer = () => {
               {settings.company_tagline || 'Eco-luxury insulated water bottles and borosilicate glass vessels engineered for peak hydration retention.'}
             </Typography>
 
-            <Box sx={{ display: 'flex', gap: 1 }}>
-              <IconButton sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}>
-                <InstagramIcon fontSize="small" />
-              </IconButton>
-              <IconButton sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}>
-                <TwitterIcon fontSize="small" />
-              </IconButton>
-              <IconButton sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}>
-                <FacebookIcon fontSize="small" />
-              </IconButton>
-            </Box>
+            {hasSocialLinks && (
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                {instagramUrl && (
+                  <IconButton
+                    component="a"
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}
+                  >
+                    <InstagramIcon fontSize="small" />
+                  </IconButton>
+                )}
+                {twitterUrl && (
+                  <IconButton
+                    component="a"
+                    href={twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Twitter"
+                    sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}
+                  >
+                    <TwitterIcon fontSize="small" />
+                  </IconButton>
+                )}
+                {facebookUrl && (
+                  <IconButton
+                    component="a"
+                    href={facebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    sx={{ color: '#00B4D8', bgcolor: '#1E293B', '&:hover': { bgcolor: '#00B4D8', color: '#fff' } }}
+                  >
+                    <FacebookIcon fontSize="small" />
+                  </IconButton>
+                )}
+              </Box>
+            )}
           </Grid>
 
           {/* Quick Links */}

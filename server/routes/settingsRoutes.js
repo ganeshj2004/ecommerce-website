@@ -5,6 +5,15 @@ const { verifyToken, isAdmin } = require('../middleware/authMiddleware');
 const { upload } = require('../config/cloudinary');
 
 router.get('/', getSettings);
-router.post('/update', verifyToken, isAdmin, upload.single('logo'), updateSettings);
+router.post(
+  '/update',
+  verifyToken,
+  isAdmin,
+  upload.fields([
+    { name: 'logo', maxCount: 1 },
+    { name: 'hero_banner', maxCount: 1 },
+  ]),
+  updateSettings
+);
 
 module.exports = router;

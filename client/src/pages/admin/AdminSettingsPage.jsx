@@ -29,15 +29,29 @@ const AdminSettingsPage = () => {
   const [formState, setFormState] = useState({ ...settings });
   const [logoFile, setLogoFile] = useState(null);
   const [logoPreview, setLogoPreview] = useState(settings.company_logo || '');
+  const [heroBannerFile, setHeroBannerFile] = useState(null);
+  const [heroBannerPreview, setHeroBannerPreview] = useState(settings.hero_banner || '');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     setFormState({ ...settings });
     setLogoPreview(resolveImageUrl(settings.company_logo));
+    setHeroBannerPreview(resolveImageUrl(settings.hero_banner));
   }, [settings]);
 
   const handleChange = (e) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormState({ ...formState, [name]: value });
+
+    if (name === 'company_logo') {
+      setLogoPreview(resolveImageUrl(value));
+      setLogoFile(null);
+    }
+
+    if (name === 'hero_banner') {
+      setHeroBannerPreview(resolveImageUrl(value));
+      setHeroBannerFile(null);
+    }
   };
 
   const handleLogoFileChange = (e) => {
@@ -45,6 +59,14 @@ const AdminSettingsPage = () => {
       const file = e.target.files[0];
       setLogoFile(file);
       setLogoPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleHeroBannerFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setHeroBannerFile(file);
+      setHeroBannerPreview(URL.createObjectURL(file));
     }
   };
 
@@ -62,11 +84,17 @@ const AdminSettingsPage = () => {
         payload.append('logo', logoFile);
       }
 
+      if (heroBannerFile) {
+        payload.append('hero_banner', heroBannerFile);
+      }
+
       await API.post('/settings/update', payload, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
       await fetchSettings();
+      setLogoFile(null);
+      setHeroBannerFile(null);
       toast.success('Website dynamic content updated successfully!');
     } catch (err) {
       toast.error('Failed to update website content.');
@@ -172,15 +200,49 @@ const AdminSettingsPage = () => {
               />
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
+              <Button
+                variant="outlined"
+                component="label"
+                fullWidth
+                startIcon={<CloudUploadIcon />}
+                sx={{ py: 1.5 }}
+              >
+                Upload Welcome Section Image
+                <input type="file" hidden accept="image/*" onChange={handleHeroBannerFileChange} />
+              </Button>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Hero Banner Image URL"
+                label="Or Direct Welcome Image URL"
                 name="hero_banner"
                 value={formState.hero_banner || ''}
                 onChange={handleChange}
               />
             </Grid>
+
+            {heroBannerPreview && (
+              <Grid item xs={12}>
+                <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
+                  Current Welcome Section Preview:
+                </Typography>
+                <Box
+                  component="img"
+                  src={heroBannerPreview}
+                  alt="Homepage welcome preview"
+                  sx={{
+                    width: '100%',
+                    maxWidth: 420,
+                    maxHeight: 220,
+                    objectFit: 'cover',
+                    borderRadius: '16px',
+                    border: '1px solid #E2E8F0',
+                  }}
+                />
+              </Grid>
+            )}
           </Grid>
 
           <Divider sx={{ mb: 4 }} />

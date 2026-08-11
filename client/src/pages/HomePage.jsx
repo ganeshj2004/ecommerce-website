@@ -24,6 +24,7 @@ import BrandLogo from '../components/BrandLogo';
 import { useSettings } from '../context/SettingsContext';
 import ProductCard from '../components/ProductCard';
 import API from '../services/api';
+import { resolveImageUrl } from '../services/imageUrl';
 
 const HomePage = () => {
   const { settings } = useSettings();
@@ -168,11 +169,11 @@ const HomePage = () => {
               >
                 <Box
                   component="img"
-                  src={
+                  src={resolveImageUrl(
                     settings.hero_banner ||
-                    'https://images.unsplash.com/photo-1544816155-12df9643f363?w=1200&q=80'
-                  }
-                  alt="AquaCraft Hero Bottle"
+                      'https://images.unsplash.com/photo-1544816155-12df9643f363?w=1200&q=80'
+                  )}
+                  alt="Homepage welcome"
                   sx={{
                     width: '100%',
                     maxHeight: { xs: '260px', sm: '380px', md: '480px' },

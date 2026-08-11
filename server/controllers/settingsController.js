@@ -16,21 +16,30 @@ const getSettings = async (req, res) => {
   }
 };
 
+const getUploadedFileUrl = (file) => {
+  if (!file) return null;
+
+  const filePath = file.path || file.secure_url || '';
+  if (filePath && (filePath.startsWith('http://') || filePath.startsWith('https://'))) {
+    return filePath;
+  }
+  if (file.filename) {
+    return `/uploads/${file.filename}`;
+  }
+  return `/uploads/${path.basename(filePath || '')}`;
+};
+
 const updateSettings = async (req, res) => {
   try {
-    const updates = req.body; // e.g. { company_name: "AquaCraft", phone: "123", ... }
+    const updates = req.body;
+    const files = req.files || {};
 
-    if (req.file) {
-      let logoUrl = req.file.path;
-      if (logoUrl && (logoUrl.startsWith('http://') || logoUrl.startsWith('https://'))) {
-        // Cloudinary storage: use full HTTPS URL
-        updates.company_logo = logoUrl;
-      } else if (req.file.filename) {
-        // Local disk storage: use /uploads/filename
-        updates.company_logo = `/uploads/${req.file.filename}`;
-      } else {
-        updates.company_logo = `/uploads/${path.basename(logoUrl || '')}`;
-      }
+    if (files.logo?.[0]) {
+      updates.company_logo = getUploadedFileUrl(files.logo[0]);
+    }
+
+    if (files.hero_banner?.[0]) {
+      updates.hero_banner = getUploadedFileUrl(files.hero_banner[0]);
     }
 
     for (const [key, value] of Object.entries(updates)) {

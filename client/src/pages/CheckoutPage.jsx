@@ -199,10 +199,10 @@ const CheckoutPage = () => {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 5 }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 }, px: { xs: 2, sm: 3, md: 4 } }}>
       {/* Amazon Style Header */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4 }}>
-        <Typography variant="h4" className="brand-font" sx={{ fontWeight: 800, color: '#0F4C81' }}>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'center' }, gap: 1.5, mb: 3.5 }}>
+        <Typography className="brand-font" sx={{ fontSize: { xs: '1.35rem', sm: '1.8rem', md: '2.2rem' }, fontWeight: 800, color: '#0F4C81', wordBreak: 'break-word' }}>
           Select Delivery & Payment Method
         </Typography>
         <Chip
@@ -213,14 +213,14 @@ const CheckoutPage = () => {
         />
       </Box>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={{ xs: 3, md: 4 }}>
         {/* Left Column: Step 1 Address + Step 2 Payment Selection */}
         <Grid item xs={12} md={7} lg={8}>
           <Box component="form" onSubmit={handlePlaceOrder}>
             {/* Step 1: Delivery Address */}
-            <Paper elevation={0} sx={{ p: 3.5, borderRadius: '20px', border: '1px solid #E2E8F0', bgcolor: '#ffffff', mb: 3 }}>
-              <Typography variant="h6" sx={{ fontWeight: 800, color: '#0F4C81', mb: 2.5, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Box component="span" sx={{ bgcolor: '#00B4D8', color: '#fff', width: 28, height: 28, borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 800 }}>
+            <Paper elevation={0} sx={{ p: { xs: 2, sm: 3.5 }, borderRadius: '20px', border: '1px solid #E2E8F0', bgcolor: '#ffffff', mb: 3 }}>
+              <Typography variant="h6" sx={{ fontWeight: 800, color: '#0F4C81', mb: 2.5, display: 'flex', alignItems: 'center', gap: 1, fontSize: { xs: '1.05rem', sm: '1.25rem' } }}>
+                <Box component="span" sx={{ bgcolor: '#00B4D8', color: '#fff', width: 28, height: 28, borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 800, flexShrink: 0 }}>
                   1
                 </Box>
                 Delivery Address
@@ -228,16 +228,16 @@ const CheckoutPage = () => {
 
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label="Full Name" name="fullName" value={shippingData.fullName} onChange={handleInputChange} required size="small" />
+                  <TextField fullWidth label="Full Name *" name="fullName" value={shippingData.fullName} onChange={handleInputChange} required size="small" />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label="10-Digit Mobile Number" name="phone" value={shippingData.phone} onChange={handleInputChange} required size="small" placeholder="9876543210" />
+                  <TextField fullWidth label="10-Digit Mobile Number *" name="phone" value={shippingData.phone} onChange={handleInputChange} required size="small" placeholder="9876543210" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField fullWidth label="Flat, House no., Building, Street Name" name="address" value={shippingData.address} onChange={handleInputChange} required size="small" placeholder="NO 93 B, Gudiyatham Tk" />
+                  <TextField fullWidth label="Flat, House no., Building, Street Name *" name="address" value={shippingData.address} onChange={handleInputChange} required size="small" placeholder="NO 93 B, Gudiyatham Tk" />
                 </Grid>
                 <Grid item xs={12} sm={5}>
-                  <TextField fullWidth label="City / Town" name="city" value={shippingData.city} onChange={handleInputChange} required size="small" placeholder="Vellore" />
+                  <TextField fullWidth label="City / Town *" name="city" value={shippingData.city} onChange={handleInputChange} required size="small" placeholder="Vellore" />
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <TextField fullWidth label="State" name="state" value={shippingData.state} onChange={handleInputChange} size="small" placeholder="Tamil Nadu" />
@@ -249,9 +249,9 @@ const CheckoutPage = () => {
             </Paper>
 
             {/* Step 2: Payment Method (Amazon Radio Cards) */}
-            <Paper elevation={0} sx={{ p: 3.5, borderRadius: '20px', border: '1px solid #E2E8F0', bgcolor: '#ffffff', mb: 3 }}>
-              <Typography variant="h6" sx={{ fontWeight: 800, color: '#0F4C81', mb: 2.5, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Box component="span" sx={{ bgcolor: '#00B4D8', color: '#fff', width: 28, height: 28, borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 800 }}>
+            <Paper elevation={0} sx={{ p: { xs: 2, sm: 3.5 }, borderRadius: '20px', border: '1px solid #E2E8F0', bgcolor: '#ffffff', mb: 3 }}>
+              <Typography variant="h6" sx={{ fontWeight: 800, color: '#0F4C81', mb: 2.5, display: 'flex', alignItems: 'center', gap: 1, fontSize: { xs: '1.05rem', sm: '1.25rem' } }}>
+                <Box component="span" sx={{ bgcolor: '#00B4D8', color: '#fff', width: 28, height: 28, borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 800, flexShrink: 0 }}>
                   2
                 </Box>
                 Select Payment Method
@@ -263,21 +263,22 @@ const CheckoutPage = () => {
                   <Paper
                     variant="outlined"
                     sx={{
-                      p: 2.5,
+                      p: { xs: 1.5, sm: 2.5 },
                       mb: 2,
                       borderRadius: '16px',
                       borderColor: paymentMethod === 'upi' ? '#00B4D8' : '#E2E8F0',
                       bgcolor: paymentMethod === 'upi' ? 'rgba(0, 180, 216, 0.04)' : '#ffffff',
                       transition: 'all 0.2s ease',
+                      overflow: 'hidden',
                     }}
                   >
                     <FormControlLabel
                       value="upi"
                       control={<Radio sx={{ color: '#00B4D8', '&.Mui-checked': { color: '#00B4D8' } }} />}
                       label={
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                          <QrCodeScannerIcon sx={{ color: '#00B4D8' }} />
-                          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#0F172A' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <QrCodeScannerIcon sx={{ color: '#00B4D8', flexShrink: 0 }} />
+                          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#0F172A', fontSize: { xs: '0.9rem', sm: '1rem' } }}>
                             UPI Apps & QR (Google Pay / PhonePe / Paytm / BHIM)
                           </Typography>
                         </Box>
@@ -285,19 +286,19 @@ const CheckoutPage = () => {
                     />
 
                     {paymentMethod === 'upi' && (
-                      <Box sx={{ mt: 2, ml: 4 }}>
-                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
+                      <Box sx={{ mt: 2, ml: { xs: 0, sm: 4 }, pt: { xs: 1, sm: 0 } }}>
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5, fontSize: '0.85rem' }}>
                           Enter your UPI Virtual Address (VPA) or click test fill below:
                         </Typography>
-                        <Stack direction="row" spacing={1.5} alignItems="center">
+                        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} alignItems={{ xs: 'stretch', sm: 'center' }}>
                           <TextField
                             size="small"
                             placeholder="username@upi"
                             value={upiId}
                             onChange={(e) => setUpiId(e.target.value)}
-                            sx={{ bgcolor: '#ffffff', width: '280px' }}
+                            sx={{ bgcolor: '#ffffff', width: { xs: '100%', sm: '280px' } }}
                           />
-                          <Button size="small" variant="outlined" onClick={fillTestUpi} sx={{ borderColor: '#00B4D8', color: '#00B4D8' }}>
+                          <Button size="small" variant="outlined" onClick={fillTestUpi} sx={{ borderColor: '#00B4D8', color: '#00B4D8', py: 0.8 }}>
                             Fill Test UPI
                           </Button>
                         </Stack>
@@ -309,21 +310,22 @@ const CheckoutPage = () => {
                   <Paper
                     variant="outlined"
                     sx={{
-                      p: 2.5,
+                      p: { xs: 1.5, sm: 2.5 },
                       mb: 2,
                       borderRadius: '16px',
                       borderColor: paymentMethod === 'card' ? '#00B4D8' : '#E2E8F0',
                       bgcolor: paymentMethod === 'card' ? 'rgba(0, 180, 216, 0.04)' : '#ffffff',
                       transition: 'all 0.2s ease',
+                      overflow: 'hidden',
                     }}
                   >
                     <FormControlLabel
                       value="card"
                       control={<Radio sx={{ color: '#00B4D8', '&.Mui-checked': { color: '#00B4D8' } }} />}
                       label={
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                          <CreditCardIcon sx={{ color: '#00B4D8' }} />
-                          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#0F172A' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <CreditCardIcon sx={{ color: '#00B4D8', flexShrink: 0 }} />
+                          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#0F172A', fontSize: { xs: '0.9rem', sm: '1rem' } }}>
                             Credit / Debit Cards (RuPay, Visa, Mastercard)
                           </Typography>
                         </Box>
@@ -331,10 +333,10 @@ const CheckoutPage = () => {
                     />
 
                     {paymentMethod === 'card' && (
-                      <Box sx={{ mt: 2, ml: 4 }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
+                      <Box sx={{ mt: 2, ml: { xs: 0, sm: 4 } }}>
+                        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, gap: 1, mb: 1.5 }}>
                           <Typography variant="body2" color="text.secondary">Enter Card Details:</Typography>
-                          <Button size="small" variant="outlined" onClick={fillTestCard} sx={{ fontSize: '0.75rem', py: 0.2 }}>
+                          <Button size="small" variant="outlined" onClick={fillTestCard} sx={{ fontSize: '0.75rem', py: 0.4 }}>
                             Fill Test Indian Card (4012...)
                           </Button>
                         </Box>
@@ -357,21 +359,22 @@ const CheckoutPage = () => {
                   <Paper
                     variant="outlined"
                     sx={{
-                      p: 2.5,
+                      p: { xs: 1.5, sm: 2.5 },
                       mb: 2,
                       borderRadius: '16px',
                       borderColor: paymentMethod === 'netbanking' ? '#00B4D8' : '#E2E8F0',
                       bgcolor: paymentMethod === 'netbanking' ? 'rgba(0, 180, 216, 0.04)' : '#ffffff',
                       transition: 'all 0.2s ease',
+                      overflow: 'hidden',
                     }}
                   >
                     <FormControlLabel
                       value="netbanking"
                       control={<Radio sx={{ color: '#00B4D8', '&.Mui-checked': { color: '#00B4D8' } }} />}
                       label={
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                          <AccountBalanceIcon sx={{ color: '#00B4D8' }} />
-                          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#0F172A' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <AccountBalanceIcon sx={{ color: '#00B4D8', flexShrink: 0 }} />
+                          <Typography variant="subtitle1" sx={{ fontWeight: 700, color: '#0F172A', fontSize: { xs: '0.9rem', sm: '1rem' } }}>
                             Net Banking (SBI, HDFC, ICICI, Axis, Kotak)
                           </Typography>
                         </Box>
@@ -379,7 +382,7 @@ const CheckoutPage = () => {
                     />
 
                     {paymentMethod === 'netbanking' && (
-                      <Box sx={{ mt: 2, ml: 4 }}>
+                      <Box sx={{ mt: 2, ml: { xs: 0, sm: 4 } }}>
                         <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
                           {['HDFC', 'SBI', 'ICICI', 'Axis', 'Kotak'].map((bank) => (
                             <Chip

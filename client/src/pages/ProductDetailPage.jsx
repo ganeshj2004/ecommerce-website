@@ -99,30 +99,30 @@ const ProductDetailPage = () => {
   const hasExternalPurchase = Boolean(amazonUrl || flipkartUrl || externalUrl);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 6 }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 6 }, px: { xs: 2, sm: 3, md: 4 } }}>
       {/* Back Link */}
       <Button
         startIcon={<ArrowBackIcon />}
         onClick={() => navigate(-1)}
-        sx={{ color: '#64748B', mb: 3, textTransform: 'none' }}
+        sx={{ color: '#64748B', mb: { xs: 2, md: 3 }, textTransform: 'none' }}
       >
         Back to Catalog
       </Button>
 
-      <Grid container spacing={6}>
+      <Grid container spacing={{ xs: 3, md: 6 }}>
         {/* Product Image */}
         <Grid item xs={12} md={6}>
           <Paper
             elevation={0}
             sx={{
-              p: 3,
+              p: { xs: 2, sm: 3 },
               borderRadius: '24px',
               border: '1px solid #E2E8F0',
               bgcolor: '#F8FAFC',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              height: { xs: 350, md: 500 },
+              height: { xs: 280, sm: 380, md: 500 },
             }}
           >
             <Box
@@ -146,16 +146,34 @@ const ProductDetailPage = () => {
             {product.category_name || 'Vessel'}
           </Typography>
 
-          <Typography variant="h3" className="brand-font" sx={{ fontWeight: 800, color: '#0F4C81', mt: 0.5, mb: 2 }}>
+          <Typography
+            className="brand-font"
+            sx={{
+              fontSize: { xs: '1.6rem', sm: '2.2rem', md: '2.8rem' },
+              fontWeight: 800,
+              color: '#0F4C81',
+              mt: 0.5,
+              mb: 1.5,
+              wordBreak: 'break-word',
+              lineHeight: 1.2,
+            }}
+          >
             {product.name}
           </Typography>
 
-          <Typography variant="h4" sx={{ fontWeight: 800, color: '#00B4D8', mb: 3 }}>
+          <Typography
+            sx={{
+              fontSize: { xs: '1.6rem', sm: '2.2rem' },
+              fontWeight: 800,
+              color: '#00B4D8',
+              mb: 2.5,
+            }}
+          >
             ${parseFloat(product.price).toFixed(2)}
           </Typography>
 
           {/* Quick Specifications Pills */}
-          <Stack direction="row" spacing={1.5} sx={{ mb: 3, flexWrap: 'wrap', gap: 1 }}>
+          <Stack direction="row" spacing={1} sx={{ mb: 3, flexWrap: 'wrap', gap: 1 }}>
             <Chip
               icon={<ThermostatOutlinedIcon style={{ color: '#00B4D8' }} />}
               label={`Capacity: ${product.capacity || '750 ml'}`}
@@ -177,22 +195,32 @@ const ProductDetailPage = () => {
             />
           </Stack>
 
-          <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.8, mb: 4 }}>
+          <Typography variant="body1" sx={{ color: '#475569', lineHeight: 1.7, mb: 3, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
             {product.description || 'Triple-insulated pro-grade vessel engineered to keep cold drinks chilled for 24 hours and hot coffee steaming for 12 hours.'}
           </Typography>
 
           <Divider sx={{ my: 3 }} />
 
           {/* Quantity Selector & Add to Cart */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 4 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { xs: 'stretch', sm: 'center' },
+              gap: 2,
+              mb: 4,
+            }}
+          >
             <Box
               sx={{
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 border: '1px solid #CBD5E1',
                 borderRadius: '30px',
-                px: 1,
+                px: 1.5,
                 py: 0.5,
+                width: { xs: '100%', sm: 'auto' },
               }}
             >
               <IconButton
@@ -202,7 +230,7 @@ const ProductDetailPage = () => {
               >
                 <RemoveIcon fontSize="small" />
               </IconButton>
-              <Typography sx={{ px: 2, fontWeight: 700, minWidth: 30, textAlign: 'center' }}>
+              <Typography sx={{ px: 3, fontWeight: 700, minWidth: 40, textAlign: 'center' }}>
                 {quantity}
               </Typography>
               <IconButton
@@ -221,7 +249,12 @@ const ProductDetailPage = () => {
               onClick={handleAddToCart}
               disabled={product.stock <= 0}
               startIcon={<ShoppingBagOutlinedIcon />}
-              sx={{ flexGrow: 1, py: 1.6, fontSize: '1.05rem' }}
+              sx={{
+                flexGrow: 1,
+                py: 1.6,
+                fontSize: '1.05rem',
+                width: { xs: '100%', sm: 'auto' },
+              }}
             >
               {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
             </Button>
@@ -233,7 +266,7 @@ const ProductDetailPage = () => {
               <Typography variant="caption" sx={{ fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: 0.8, display: 'block', mb: 1.5 }}>
                 Also Available On
               </Typography>
-              <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1.5 }}>
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
                 {amazonUrl && (
                   <Button
                     component="a"
@@ -241,6 +274,7 @@ const ProductDetailPage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="outlined"
+                    fullWidth
                     startIcon={
                       <Box
                         component="span"
@@ -261,7 +295,7 @@ const ProductDetailPage = () => {
                       fontWeight: 700,
                       borderRadius: '25px',
                       px: 2.5,
-                      py: 0.8,
+                      py: 1,
                       bgcolor: '#FFFDF9',
                       textTransform: 'none',
                       '&:hover': {
@@ -281,6 +315,7 @@ const ProductDetailPage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="outlined"
+                    fullWidth
                     startIcon={
                       <Box
                         component="span"
@@ -301,7 +336,7 @@ const ProductDetailPage = () => {
                       fontWeight: 700,
                       borderRadius: '25px',
                       px: 2.5,
-                      py: 0.8,
+                      py: 1,
                       bgcolor: '#F5F8FF',
                       textTransform: 'none',
                       '&:hover': {
@@ -321,6 +356,7 @@ const ProductDetailPage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="outlined"
+                    fullWidth
                     startIcon={<ShoppingBagOutlinedIcon sx={{ color: '#00B4D8' }} />}
                     sx={{
                       borderColor: '#00B4D8',
@@ -328,7 +364,7 @@ const ProductDetailPage = () => {
                       fontWeight: 700,
                       borderRadius: '25px',
                       px: 2.5,
-                      py: 0.8,
+                      py: 1,
                       bgcolor: '#F0FDF4',
                       textTransform: 'none',
                       '&:hover': {
@@ -348,18 +384,18 @@ const ProductDetailPage = () => {
           {/* Guarantee Badges */}
           <Paper elevation={0} sx={{ p: 2.5, bgcolor: '#F8FAFC', borderRadius: '16px', border: '1px solid #E2E8F0' }}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <ShieldOutlinedIcon sx={{ color: '#00B4D8' }} />
-                  <Typography variant="caption" sx={{ fontWeight: 700, color: '#0F172A' }}>
+              <Grid item xs={12} sm={6}>
+                <Stack direction="row" spacing={1.5} alignItems="center">
+                  <ShieldOutlinedIcon sx={{ color: '#00B4D8', fontSize: 24 }} />
+                  <Typography variant="body2" sx={{ fontWeight: 700, color: '#0F172A' }}>
                     100-Day Spillproof Guarantee
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={6}>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <CheckCircleOutlinedIcon sx={{ color: '#10B981' }} />
-                  <Typography variant="caption" sx={{ fontWeight: 700, color: '#0F172A' }}>
+              <Grid item xs={12} sm={6}>
+                <Stack direction="row" spacing={1.5} alignItems="center">
+                  <CheckCircleOutlinedIcon sx={{ color: '#10B981', fontSize: 24 }} />
+                  <Typography variant="body2" sx={{ fontWeight: 700, color: '#0F172A' }}>
                     BPA & Phthalate Free
                   </Typography>
                 </Stack>

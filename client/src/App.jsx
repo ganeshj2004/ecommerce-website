@@ -35,9 +35,9 @@ import MyOrdersPage from './pages/MyOrdersPage';
 // Customer Main Layout
 const MainLayout = () => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
       <Navbar />
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box component="main" sx={{ flexGrow: 1, width: '100%', overflowX: 'hidden' }}>
         <Outlet />
       </Box>
       <Footer />

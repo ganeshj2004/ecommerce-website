@@ -58,33 +58,34 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Box sx={{ overflowX: 'hidden' }}>
+    <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       {/* 1. Hero Section */}
       <Box
         sx={{
           position: 'relative',
           background: 'linear-gradient(135deg, #0F4C81 0%, #0B192C 100%)',
           color: '#ffffff',
-          py: { xs: 8, md: 12 },
+          py: { xs: 5, md: 12 },
           overflow: 'hidden',
+          width: '100%',
         }}
       >
         {/* Background glow effects */}
         <Box
           sx={{
             position: 'absolute',
-            top: '-20%',
-            right: '-10%',
-            width: '600px',
-            height: '600px',
+            top: 0,
+            right: 0,
+            width: '300px',
+            height: '300px',
             borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(0,180,216,0.2) 0%, rgba(0,0,0,0) 70%)',
             pointerEvents: 'none',
           }}
         />
 
-        <Container maxWidth="xl">
-          <Grid container spacing={6} alignItems="center">
+        <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+          <Grid container spacing={{ xs: 3, md: 6 }} alignItems="center">
             <Grid item xs={12} md={6}>
               <Chip
                 icon={<WaterDropIcon style={{ color: '#00B4D8' }} />}
@@ -93,33 +94,32 @@ const HomePage = () => {
                   bgcolor: 'rgba(0, 180, 216, 0.15)',
                   color: '#00B4D8',
                   fontWeight: 700,
-                  mb: 3,
+                  mb: 2,
                   px: 1,
-                  py: 2.5,
-                  fontSize: '0.9rem',
+                  py: 2,
+                  fontSize: { xs: '0.78rem', sm: '0.9rem' },
                 }}
               />
               <Typography
-                variant="h2"
                 className="brand-font"
                 sx={{
                   fontWeight: 800,
-                  fontSize: { xs: '2.5rem', sm: '3.4rem', md: '3.8rem' },
+                  fontSize: { xs: '1.65rem', sm: '2.8rem', md: '3.8rem' },
                   lineHeight: 1.15,
-                  mb: 2.5,
+                  mb: 2,
+                  wordBreak: 'break-word',
                 }}
               >
                 {settings.hero_title || 'Elevate Your Hydration with Eco-Luxury Bottles'}
               </Typography>
 
               <Typography
-                variant="h6"
                 sx={{
                   color: '#94A3B8',
                   fontWeight: 400,
-                  fontSize: { xs: '1rem', md: '1.15rem' },
+                  fontSize: { xs: '0.95rem', md: '1.15rem' },
                   lineHeight: 1.6,
-                  mb: 4,
+                  mb: 3,
                   maxWidth: '560px',
                 }}
               >
@@ -127,14 +127,14 @@ const HomePage = () => {
                   '100% BPA-Free vacuum insulated thermo flasks & eco borosilicate glass bottles designed for peak performance.'}
               </Typography>
 
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
                 <Button
                   component={Link}
                   to="/products"
                   className="btn-gradient"
                   size="large"
                   endIcon={<ArrowForwardIcon />}
-                  sx={{ px: 4, py: 1.6, fontSize: '1.05rem' }}
+                  sx={{ px: 4, py: 1.5, fontSize: '1rem', width: { xs: '100%', sm: 'auto' } }}
                 >
                   Explore Collection
                 </Button>
@@ -148,7 +148,8 @@ const HomePage = () => {
                     color: '#ffffff',
                     borderRadius: '30px',
                     px: 3.5,
-                    fontSize: '1rem',
+                    fontSize: '0.95rem',
+                    width: { xs: '100%', sm: 'auto' },
                     '&:hover': { borderColor: '#00B4D8', color: '#00B4D8', bgcolor: 'rgba(0, 180, 216, 0.1)' },
                   }}
                 >
@@ -174,7 +175,7 @@ const HomePage = () => {
                   alt="AquaCraft Hero Bottle"
                   sx={{
                     width: '100%',
-                    maxHeight: '480px',
+                    maxHeight: { xs: '260px', sm: '380px', md: '480px' },
                     objectFit: 'cover',
                     borderRadius: '24px',
                     boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
@@ -188,26 +189,26 @@ const HomePage = () => {
       </Box>
 
       {/* 2. Features / Value Propositions */}
-      <Container maxWidth="xl" sx={{ mt: -4, position: 'relative', zIndex: 2 }}>
-        <Grid container spacing={3}>
+      <Container maxWidth="xl" sx={{ mt: { xs: 4, md: -4 }, position: 'relative', zIndex: 2, px: { xs: 2, sm: 3, md: 4 } }}>
+        <Grid container spacing={2}>
           {[
             {
-              icon: <AcUnitOutlinedIcon sx={{ fontSize: 36, color: '#00B4D8' }} />,
+              icon: <AcUnitOutlinedIcon sx={{ fontSize: 32, color: '#00B4D8' }} />,
               title: '24h Cold / 12h Hot',
               desc: 'Double-wall vacuum insulation seals temperature locks for extreme weather conditions.',
             },
             {
-              icon: <RecyclingOutlinedIcon sx={{ fontSize: 36, color: '#00B4D8' }} />,
+              icon: <RecyclingOutlinedIcon sx={{ fontSize: 32, color: '#00B4D8' }} />,
               title: '100% Eco BPA-Free',
               desc: 'Toxin-free, food-grade 18/8 stainless steel and borosilicate glass materials.',
             },
             {
-              icon: <LocalShippingOutlinedIcon sx={{ fontSize: 36, color: '#00B4D8' }} />,
+              icon: <LocalShippingOutlinedIcon sx={{ fontSize: 32, color: '#00B4D8' }} />,
               title: `Free Shipping Over $${settings.free_shipping_min || 50}`,
               desc: 'Enjoy rapid climate-neutral delivery on all qualified orders nationwide.',
             },
             {
-              icon: <VerifiedUserOutlinedIcon sx={{ fontSize: 36, color: '#00B4D8' }} />,
+              icon: <VerifiedUserOutlinedIcon sx={{ fontSize: 32, color: '#00B4D8' }} />,
               title: 'Lifetime Leak Guarantee',
               desc: 'Precision silicone gasket seal ensures 100% spill-proof protection anywhere.',
             },
@@ -216,7 +217,7 @@ const HomePage = () => {
               <Paper
                 className="glass-card"
                 sx={{
-                  p: 3,
+                  p: 2.5,
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
@@ -225,11 +226,11 @@ const HomePage = () => {
                   bgcolor: '#ffffff',
                 }}
               >
-                <Box sx={{ mb: 1.5 }}>{item.icon}</Box>
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1.05rem', mb: 1 }}>
+                <Box sx={{ mb: 1 }}>{item.icon}</Box>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1rem', mb: 0.8 }}>
                   {item.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem' }}>
                   {item.desc}
                 </Typography>
               </Paper>
@@ -239,17 +240,17 @@ const HomePage = () => {
       </Container>
 
       {/* 3. Shop by Category */}
-      <Container maxWidth="xl" sx={{ mt: 10 }}>
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
+      <Container maxWidth="xl" sx={{ mt: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
           <Typography variant="caption" sx={{ color: '#00B4D8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1 }}>
             Vessel Collections
           </Typography>
-          <Typography variant="h3" sx={{ fontWeight: 800, color: '#0F4C81', mt: 0.5 }}>
+          <Typography className="brand-font" sx={{ fontSize: { xs: '1.5rem', sm: '2.2rem', md: '2.5rem' }, fontWeight: 800, color: '#0F4C81', mt: 0.5 }}>
             Browse By Category
           </Typography>
         </Box>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {categories.map((cat) => (
             <Grid item xs={12} sm={6} md={3} key={cat.id}>
               <Card
@@ -260,7 +261,7 @@ const HomePage = () => {
                   borderRadius: '16px',
                   overflow: 'hidden',
                   position: 'relative',
-                  height: 280,
+                  height: { xs: 220, sm: 260, md: 280 },
                   boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
                   transition: 'all 0.3s ease',
                   '&:hover': { transform: 'scale(1.03)', boxShadow: '0 12px 30px rgba(0,180,216,0.25)' },
@@ -268,9 +269,9 @@ const HomePage = () => {
               >
                 <CardMedia
                   component="img"
-                  height="100%"
                   image={cat.image_url || 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80'}
                   alt={cat.name}
+                  sx={{ height: '100%', width: '100%', objectFit: 'cover', display: 'block' }}
                 />
                 <Box
                   sx={{
@@ -283,11 +284,11 @@ const HomePage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
-                    p: 3,
+                    p: 2.5,
                     color: '#ffffff',
                   }}
                 >
-                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
+                  <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5, fontSize: { xs: '1.1rem', sm: '1.25rem' } }}>
                     {cat.name}
                   </Typography>
                   <Typography variant="caption" sx={{ color: '#00B4D8', fontWeight: 600 }}>
@@ -301,13 +302,13 @@ const HomePage = () => {
       </Container>
 
       {/* 4. Featured Products Section */}
-      <Container maxWidth="xl" sx={{ mt: 10 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mb: 5 }}>
+      <Container maxWidth="xl" sx={{ mt: { xs: 6, md: 10 }, px: { xs: 2, sm: 3, md: 4 } }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'flex-end' }, gap: 1.5, mb: 4 }}>
           <Box>
             <Typography variant="caption" sx={{ color: '#00B4D8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1 }}>
               Featured Canteens
             </Typography>
-            <Typography variant="h3" sx={{ fontWeight: 800, color: '#0F4C81', mt: 0.5 }}>
+            <Typography className="brand-font" sx={{ fontSize: { xs: '1.5rem', sm: '2.2rem', md: '2.5rem' }, fontWeight: 800, color: '#0F4C81', mt: 0.5 }}>
               Top Selling Bottles
             </Typography>
           </Box>
@@ -316,7 +317,7 @@ const HomePage = () => {
             component={Link}
             to="/products"
             endIcon={<ArrowForwardIcon />}
-            sx={{ color: '#00B4D8', fontWeight: 700, textTransform: 'none', fontSize: '1rem' }}
+            sx={{ color: '#00B4D8', fontWeight: 700, textTransform: 'none', fontSize: '0.95rem', px: 0 }}
           >
             View All ({featuredProducts.length}+)
           </Button>
@@ -327,7 +328,7 @@ const HomePage = () => {
             <CircularProgress sx={{ color: '#00B4D8' }} />
           </Box>
         ) : (
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             {featuredProducts.map((prod) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={prod.id}>
                 <ProductCard product={prod} />
@@ -338,22 +339,22 @@ const HomePage = () => {
       </Container>
 
       {/* 5. Eco Impact Banner */}
-      <Container maxWidth="xl" sx={{ mt: 12 }}>
+      <Container maxWidth="xl" sx={{ mt: { xs: 6, md: 12 }, px: { xs: 2, sm: 3, md: 4 } }}>
         <Paper
           sx={{
             background: 'linear-gradient(135deg, #0F4C81 0%, #00B4D8 100%)',
             color: '#ffffff',
             borderRadius: '24px',
-            p: { xs: 4, md: 8 },
+            p: { xs: 3, sm: 6, md: 8 },
             textAlign: 'center',
             position: 'relative',
             overflow: 'hidden',
           }}
         >
-          <Typography variant="h4" className="brand-font" sx={{ fontWeight: 800, mb: 2 }}>
+          <Typography className="brand-font" sx={{ fontWeight: 800, mb: 2, fontSize: { xs: '1.3rem', sm: '1.8rem', md: '2.2rem' } }}>
             Over 500,000 Single-Use Plastic Bottles Prevented
           </Typography>
-          <Typography variant="body1" sx={{ maxWidth: '700px', mx: 'auto', mb: 4, opacity: 0.9, fontSize: '1.1rem' }}>
+          <Typography variant="body1" sx={{ maxWidth: '700px', mx: 'auto', mb: 3.5, opacity: 0.9, fontSize: { xs: '0.9rem', md: '1.1rem' } }}>
             By switching to a durable AquaCraft vessel, you save an average of 167 plastic bottles from entering oceans and landfills every year.
           </Typography>
           <Button
@@ -366,8 +367,9 @@ const HomePage = () => {
               color: '#0F4C81',
               fontWeight: 800,
               borderRadius: '30px',
-              px: 4,
-              py: 1.5,
+              px: 3.5,
+              py: 1.4,
+              fontSize: { xs: '0.9rem', md: '1rem' },
               '&:hover': { bgcolor: '#F1F5F9' },
             }}
           >

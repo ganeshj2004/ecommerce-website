@@ -72,10 +72,13 @@ const Navbar = () => {
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
         backdropFilter: 'blur(10px)',
         borderBottom: '1px solid #E2E8F0',
+        width: '100%',
+        maxWidth: '100vw',
+        overflowX: 'hidden',
       }}
     >
-      <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ minHeight: '75px', justifyContent: 'space-between' }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+        <Toolbar disableGutters sx={{ minHeight: { xs: '65px', md: '75px' }, justifyContent: 'space-between', gap: 1 }}>
           {/* Brand Logo & Name */}
           <Box
             component={Link}
@@ -85,7 +88,9 @@ const Navbar = () => {
               alignItems: 'center',
               textDecoration: 'none',
               color: 'inherit',
-              gap: 1.5,
+              gap: { xs: 1, sm: 1.5 },
+              maxWidth: { xs: '160px', sm: '280px', md: 'none' },
+              overflow: 'hidden',
             }}
           >
             {settings.company_logo ? (
@@ -93,27 +98,40 @@ const Navbar = () => {
                 component="img"
                 src={resolveImageUrl(settings.company_logo)}
                 alt={settings.company_name}
-                sx={{ height: 42, width: 'auto', borderRadius: '8px', objectFit: 'contain' }}
+                className="navbar-logo"
+                sx={{
+                  height: { xs: 34, sm: 42 },
+                  maxHeight: { xs: 34, sm: 42 },
+                  width: 'auto',
+                  maxWidth: { xs: 80, sm: 120 },
+                  borderRadius: '8px',
+                  objectFit: 'contain',
+                  flexShrink: 0,
+                  display: 'block',
+                }}
               />
             ) : (
-              <Avatar sx={{ bgcolor: '#00B4D8', width: 40, height: 40 }}>
-                <WaterDropIcon />
+              <Avatar sx={{ bgcolor: '#00B4D8', width: { xs: 34, sm: 40 }, height: { xs: 34, sm: 40 }, flexShrink: 0 }}>
+                <WaterDropIcon sx={{ fontSize: { xs: 20, sm: 24 } }} />
               </Avatar>
             )}
-            <Box>
+            <Box sx={{ overflow: 'hidden' }}>
               <Typography
                 variant="h6"
                 className="brand-font"
+                noWrap
                 sx={{
                   color: '#0F4C81',
                   fontWeight: 800,
-                  fontSize: { xs: '1.2rem', md: '1.4rem' },
+                  fontSize: { xs: '1.05rem', sm: '1.25rem', md: '1.4rem' },
                   lineHeight: 1.1,
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
                 }}
               >
                 {settings.company_name}
               </Typography>
-              <Typography variant="caption" sx={{ color: '#00B4D8', fontWeight: 600, display: { xs: 'none', sm: 'block' } }}>
+              <Typography variant="caption" noWrap sx={{ color: '#00B4D8', fontWeight: 600, display: { xs: 'none', sm: 'block' } }}>
                 {settings.company_tagline || 'Eco-Hydration'}
               </Typography>
             </Box>
@@ -315,8 +333,18 @@ const Navbar = () => {
       </Container>
 
       {/* Mobile Drawer */}
-      <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
-        <Box sx={{ width: 270, p: 2.5 }}>
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        PaperProps={{
+          sx: {
+            width: { xs: '82vw', sm: 280 },
+            maxWidth: 300,
+          },
+        }}
+      >
+        <Box sx={{ p: 2.5 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
             <Avatar sx={{ bgcolor: '#00B4D8', width: 36, height: 36 }}>
               <WaterDropIcon />

@@ -37,14 +37,14 @@ const Footer = () => {
       sx={{
         backgroundColor: '#0B192C',
         color: '#94A3B8',
-        pt: 8,
+        pt: { xs: 5, md: 8 },
         pb: 4,
-        mt: 10,
+        mt: { xs: 6, md: 10 },
         borderTop: '1px solid #1E293B',
       }}
     >
-      <Container maxWidth="xl">
-        <Grid container spacing={4} sx={{ mb: 6 }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+        <Grid container spacing={{ xs: 4, md: 4 }} sx={{ mb: 6 }}>
           {/* Brand Info */}
           <Grid item xs={12} md={4}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
@@ -100,7 +100,7 @@ const Footer = () => {
           </Grid>
 
           {/* Quick Links */}
-          <Grid item xs={6} sm={3} md={2}>
+          <Grid item xs={12} sm={6} md={2}>
             <Typography variant="subtitle1" sx={{ color: '#ffffff', fontWeight: 700, mb: 2.5 }}>
               Shop Catalog
             </Typography>
@@ -121,13 +121,13 @@ const Footer = () => {
           </Grid>
 
           {/* Contact Details */}
-          <Grid item xs={6} sm={3} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Typography variant="subtitle1" sx={{ color: '#ffffff', fontWeight: 700, mb: 2.5 }}>
               Contact Us
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <PhoneOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20 }} />
+                <PhoneOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20, flexShrink: 0 }} />
                 {settings.phone ? (
                   <Typography
                     component="a"
@@ -137,6 +137,7 @@ const Footer = () => {
                       color: '#94A3B8',
                       textDecoration: 'none',
                       transition: 'color 0.2s',
+                      wordBreak: 'break-word',
                       '&:hover': { color: '#00B4D8' },
                     }}
                   >
@@ -147,7 +148,7 @@ const Footer = () => {
                 )}
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <EmailOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20 }} />
+                <EmailOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20, flexShrink: 0 }} />
                 {settings.email ? (
                   <Typography
                     component="a"
@@ -157,6 +158,7 @@ const Footer = () => {
                       color: '#94A3B8',
                       textDecoration: 'none',
                       transition: 'color 0.2s',
+                      wordBreak: 'break-all',
                       '&:hover': { color: '#00B4D8' },
                     }}
                   >
@@ -167,8 +169,8 @@ const Footer = () => {
                 )}
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
-                <LocationOnOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20, mt: 0.2 }} />
-                <Typography variant="body2">{settings.address}</Typography>
+                <LocationOnOutlinedIcon sx={{ color: '#00B4D8', fontSize: 20, mt: 0.2, flexShrink: 0 }} />
+                <Typography variant="body2" sx={{ wordBreak: 'break-word' }}>{settings.address}</Typography>
               </Box>
             </Box>
           </Grid>

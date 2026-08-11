@@ -101,11 +101,11 @@ const ProductsPage = () => {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 5 }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 }, px: { xs: 2, sm: 3, md: 4 } }}>
       {/* Page Title & Count Header */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: { xs: 2.5, md: 4 } }}>
         <Box>
-          <Typography variant="h4" className="brand-font" sx={{ fontWeight: 800, color: '#0F4C81' }}>
+          <Typography className="brand-font" sx={{ fontSize: { xs: '1.4rem', sm: '1.8rem', md: '2.2rem' }, fontWeight: 800, color: '#0F4C81' }}>
             Bottle Catalog
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -118,13 +118,13 @@ const ProductsPage = () => {
           variant="outlined"
           startIcon={<FilterAltIcon />}
           onClick={() => setMobileFilterOpen(true)}
-          sx={{ display: { xs: 'flex', md: 'none' }, borderColor: '#00B4D8', color: '#00B4D8' }}
+          sx={{ display: { xs: 'flex', md: 'none' }, borderColor: '#00B4D8', color: '#00B4D8', flexShrink: 0 }}
         >
           Filters
         </Button>
       </Box>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={{ xs: 2, md: 4 }}>
         {/* Desktop Filter Sidebar */}
         <Grid item xs={12} md={3.5} lg={3} sx={{ display: { xs: 'none', md: 'block' } }}>
           <FilterSidebar

@@ -44,9 +44,23 @@ const seedData = async () => {
         color VARCHAR(100) DEFAULT 'Matte Black',
         image_url VARCHAR(500),
         is_featured INTEGER DEFAULT 0,
+        amazon_link VARCHAR(500),
+        flipkart_link VARCHAR(500),
+        external_link VARCHAR(500),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
+
+    // Auto-migrate columns if table already exists
+    try {
+      await db.query('ALTER TABLE products ADD COLUMN amazon_link VARCHAR(500)');
+    } catch (_) {}
+    try {
+      await db.query('ALTER TABLE products ADD COLUMN flipkart_link VARCHAR(500)');
+    } catch (_) {}
+    try {
+      await db.query('ALTER TABLE products ADD COLUMN external_link VARCHAR(500)');
+    } catch (_) {}
 
     await db.query(`
       CREATE TABLE IF NOT EXISTS cart (
@@ -136,19 +150,19 @@ const seedData = async () => {
 
     if (prodCount === 0) {
       const productsData = [
-        [1, 'HydroShield Pro Thermo 1000ml', 'hydroshield-pro-thermo-1000ml', 'Triple-insulated 18/8 pro-grade stainless steel bottle with sweat-free powder finish and leakproof straw lid.', 39.99, 45, '1000 ml', 'Pro 18/8 Stainless Steel', 'Midnight Black', 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80', 1],
-        [1, 'TitanThermo Vacuum Flask 1200ml', 'titanthermo-vacuum-flask-1200ml', 'Rugged outdoor canteen flask engineered for extreme thermal preservation. Keeps soup hot for 18h and water ice-cold for 36h.', 49.99, 25, '1200 ml', 'Vacuum Steel', 'Forest Green', 'https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=800&q=80', 1],
-        [2, 'GlassPure Artisan Sleeve 750ml', 'glasspure-artisan-sleeve-750ml', 'Thermal shock-resistant borosilicate glass wrapped in food-grade protective silicone. Zero plastic taste.', 24.99, 60, '750 ml', 'Borosilicate Glass', 'Ocean Blue', 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=800&q=80', 1],
-        [2, 'EcoBamboo Fusion Glass 600ml', 'ecobamboo-fusion-glass-600ml', 'Sleek eco-friendly bottle featuring an organic bamboo lid, stainless steel infuser, and crystal clear glass body.', 28.50, 40, '600 ml', 'Glass & Bamboo', 'Natural Wood', 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80', 0],
-        [3, 'SmartClean UV-C Purifier 800ml', 'smartclean-uvc-purifier-800ml', 'Deep UV-C light cap neutralizes 99.99% of bacteria and viruses in 60 seconds. Touchscreen cap displays water temperature.', 69.99, 30, '800 ml', 'Insulated Stainless Steel', 'Starlight Silver', 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&q=80', 1],
-        [4, 'AeroSport Flex Gym Flask 900ml', 'aerosport-flex-gym-flask-900ml', 'Impact-resistant Tritan bottle with rapid-flow spout, integrated carrying loop, and volumetric measurement markers.', 19.99, 80, '900 ml', 'BPA-Free Tritan', 'Crimson Red', 'https://images.unsplash.com/photo-1570831739435-660143a4e5d5?w=800&q=80', 0],
-        [1, 'ArcticChill Slim Tumbler 650ml', 'arcticchill-slim-tumbler-650ml', 'Cup-holder friendly slim insulated bottle with magnetic pop cap and durable powder coating.', 32.00, 50, '650 ml', 'Stainless Steel', 'Rose Quartz', 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=800&q=80', 1],
-        [4, 'HydroPulse Chug Bottle 1500ml', 'hydropulse-chug-bottle-1500ml', 'High capacity daily hydration gallon-style bottle with ergonomic handle and wide mouth for ice cubes.', 29.99, 35, '1500 ml', 'Heavy Duty Tritan', 'Matte Grey', 'https://images.unsplash.com/photo-1536939459926-301728717817?w=800&q=80', 0],
+        [1, 'HydroShield Pro Thermo 1000ml', 'hydroshield-pro-thermo-1000ml', 'Triple-insulated 18/8 pro-grade stainless steel bottle with sweat-free powder finish and leakproof straw lid.', 39.99, 45, '1000 ml', 'Pro 18/8 Stainless Steel', 'Midnight Black', 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80', 1, 'https://amazon.com', 'https://flipkart.com', ''],
+        [1, 'TitanThermo Vacuum Flask 1200ml', 'titanthermo-vacuum-flask-1200ml', 'Rugged outdoor canteen flask engineered for extreme thermal preservation. Keeps soup hot for 18h and water ice-cold for 36h.', 49.99, 25, '1200 ml', 'Vacuum Steel', 'Forest Green', 'https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=800&q=80', 1, 'https://amazon.com', 'https://flipkart.com', ''],
+        [2, 'GlassPure Artisan Sleeve 750ml', 'glasspure-artisan-sleeve-750ml', 'Thermal shock-resistant borosilicate glass wrapped in food-grade protective silicone. Zero plastic taste.', 24.99, 60, '750 ml', 'Borosilicate Glass', 'Ocean Blue', 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=800&q=80', 1, '', 'https://flipkart.com', ''],
+        [2, 'EcoBamboo Fusion Glass 600ml', 'ecobamboo-fusion-glass-600ml', 'Sleek eco-friendly bottle featuring an organic bamboo lid, stainless steel infuser, and crystal clear glass body.', 28.50, 40, '600 ml', 'Glass & Bamboo', 'Natural Wood', 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80', 0, 'https://amazon.com', '', ''],
+        [3, 'SmartClean UV-C Purifier 800ml', 'smartclean-uvc-purifier-800ml', 'Deep UV-C light cap neutralizes 99.99% of bacteria and viruses in 60 seconds. Touchscreen cap displays water temperature.', 69.99, 30, '800 ml', 'Insulated Stainless Steel', 'Starlight Silver', 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&q=80', 1, 'https://amazon.com', 'https://flipkart.com', ''],
+        [4, 'AeroSport Flex Gym Flask 900ml', 'aerosport-flex-gym-flask-900ml', 'Impact-resistant Tritan bottle with rapid-flow spout, integrated carrying loop, and volumetric measurement markers.', 19.99, 80, '900 ml', 'BPA-Free Tritan', 'Crimson Red', 'https://images.unsplash.com/photo-1570831739435-660143a4e5d5?w=800&q=80', 0, '', '', ''],
+        [1, 'ArcticChill Slim Tumbler 650ml', 'arcticchill-slim-tumbler-650ml', 'Cup-holder friendly slim insulated bottle with magnetic pop cap and durable powder coating.', 32.00, 50, '650 ml', 'Stainless Steel', 'Rose Quartz', 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=800&q=80', 1, 'https://amazon.com', 'https://flipkart.com', ''],
+        [4, 'HydroPulse Chug Bottle 1500ml', 'hydropulse-chug-bottle-1500ml', 'High capacity daily hydration gallon-style bottle with ergonomic handle and wide mouth for ice cubes.', 29.99, 35, '1500 ml', 'Heavy Duty Tritan', 'Matte Grey', 'https://images.unsplash.com/photo-1536939459926-301728717817?w=800&q=80', 0, '', '', ''],
       ];
 
       for (const prod of productsData) {
         await db.query(
-          'INSERT INTO products (category_id, name, slug, description, price, stock, capacity, material, color, image_url, is_featured) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+          'INSERT INTO products (category_id, name, slug, description, price, stock, capacity, material, color, image_url, is_featured, amazon_link, flipkart_link, external_link) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
           prod
         );
       }

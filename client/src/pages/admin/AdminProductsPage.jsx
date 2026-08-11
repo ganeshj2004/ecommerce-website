@@ -53,6 +53,9 @@ const AdminProductsPage = () => {
     color: 'Matte Black',
     is_featured: false,
     image_url: '',
+    amazon_link: '',
+    flipkart_link: '',
+    external_link: '',
   });
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
@@ -91,6 +94,9 @@ const AdminProductsPage = () => {
       color: 'Matte Black',
       is_featured: false,
       image_url: '',
+      amazon_link: '',
+      flipkart_link: '',
+      external_link: '',
     });
     setSelectedFile(null);
     setPreviewUrl('');
@@ -110,6 +116,9 @@ const AdminProductsPage = () => {
       color: product.color || 'Matte Black',
       is_featured: product.is_featured === 1,
       image_url: product.image_url || '',
+      amazon_link: product.amazon_link || '',
+      flipkart_link: product.flipkart_link || '',
+      external_link: product.external_link || '',
     });
     setSelectedFile(null);
     setPreviewUrl(product.image_url || '');
@@ -139,6 +148,9 @@ const AdminProductsPage = () => {
       payload.append('material', formData.material);
       payload.append('color', formData.color);
       payload.append('is_featured', formData.is_featured ? '1' : '0');
+      payload.append('amazon_link', formData.amazon_link || '');
+      payload.append('flipkart_link', formData.flipkart_link || '');
+      payload.append('external_link', formData.external_link || '');
 
       if (selectedFile) {
         payload.append('image', selectedFile);
@@ -383,6 +395,45 @@ const AdminProductsPage = () => {
                   <Box component="img" src={previewUrl} sx={{ height: 120, borderRadius: '8px', objectFit: 'contain' }} />
                 </Grid>
               )}
+
+              <Grid item xs={12}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 800, color: '#0F4C81', mt: 1 }}>
+                  Also Available On (External Purchase Links)
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  If filled, platform icons will be displayed on the product page. Leave empty to hide.
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  fullWidth
+                  label="Amazon Product URL"
+                  placeholder="https://amazon.in/dp/..."
+                  value={formData.amazon_link}
+                  onChange={(e) => setFormData({ ...formData, amazon_link: e.target.value })}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  fullWidth
+                  label="Flipkart Product URL"
+                  placeholder="https://flipkart.com/p/..."
+                  value={formData.flipkart_link}
+                  onChange={(e) => setFormData({ ...formData, flipkart_link: e.target.value })}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  fullWidth
+                  label="Other Marketplace / Website URL"
+                  placeholder="https://..."
+                  value={formData.external_link}
+                  onChange={(e) => setFormData({ ...formData, external_link: e.target.value })}
+                />
+              </Grid>
 
               <Grid item xs={12}>
                 <FormControlLabel

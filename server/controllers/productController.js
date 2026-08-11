@@ -135,6 +135,9 @@ const createProduct = async (req, res) => {
       material,
       color,
       is_featured,
+      amazon_link,
+      flipkart_link,
+      external_link,
     } = req.body;
 
     if (!category_id || !name || !price) {
@@ -157,8 +160,8 @@ const createProduct = async (req, res) => {
 
     const [result] = await db.query(
       `INSERT INTO products 
-       (category_id, name, slug, description, price, stock, capacity, material, color, image_url, is_featured) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       (category_id, name, slug, description, price, stock, capacity, material, color, image_url, is_featured, amazon_link, flipkart_link, external_link) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         category_id,
         name,
@@ -171,6 +174,9 @@ const createProduct = async (req, res) => {
         color || 'Matte Black',
         image_url,
         is_featured ? 1 : 0,
+        amazon_link || '',
+        flipkart_link || '',
+        external_link || '',
       ]
     );
 
@@ -197,6 +203,9 @@ const updateProduct = async (req, res) => {
       material,
       color,
       is_featured,
+      amazon_link,
+      flipkart_link,
+      external_link,
     } = req.body;
 
     const [existing] = await db.query('SELECT * FROM products WHERE id = ?', [id]);
@@ -221,7 +230,8 @@ const updateProduct = async (req, res) => {
     await db.query(
       `UPDATE products 
        SET category_id = ?, name = ?, description = ?, price = ?, stock = ?, 
-           capacity = ?, material = ?, color = ?, image_url = ?, is_featured = ? 
+           capacity = ?, material = ?, color = ?, image_url = ?, is_featured = ?, 
+           amazon_link = ?, flipkart_link = ?, external_link = ? 
        WHERE id = ?`,
       [
         category_id || existing[0].category_id,
@@ -234,6 +244,9 @@ const updateProduct = async (req, res) => {
         color || existing[0].color,
         image_url,
         is_featured !== undefined ? (is_featured ? 1 : 0) : existing[0].is_featured,
+        amazon_link !== undefined ? amazon_link : (existing[0].amazon_link || ''),
+        flipkart_link !== undefined ? flipkart_link : (existing[0].flipkart_link || ''),
+        external_link !== undefined ? external_link : (existing[0].external_link || ''),
         id,
       ]
     );

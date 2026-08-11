@@ -83,6 +83,21 @@ const ProductDetailPage = () => {
     }
   };
 
+  const formatExternalUrl = (url) => {
+    if (!url) return '';
+    const trimmed = String(url).trim();
+    if (!trimmed) return '';
+    if (/^https?:\/\//i.test(trimmed)) {
+      return trimmed;
+    }
+    return `https://${trimmed}`;
+  };
+
+  const amazonUrl = formatExternalUrl(product.amazon_link);
+  const flipkartUrl = formatExternalUrl(product.flipkart_link);
+  const externalUrl = formatExternalUrl(product.external_link);
+  const hasExternalPurchase = Boolean(amazonUrl || flipkartUrl || externalUrl);
+
   return (
     <Container maxWidth="xl" sx={{ py: 6 }}>
       {/* Back Link */}
@@ -112,7 +127,7 @@ const ProductDetailPage = () => {
           >
             <Box
               component="img"
-                              src={resolveImageUrl(product.image_url)}
+              src={resolveImageUrl(product.image_url)}
               alt={product.name}
               sx={{
                 maxHeight: '100%',
@@ -211,6 +226,124 @@ const ProductDetailPage = () => {
               {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
             </Button>
           </Box>
+
+          {/* Also Available On Section */}
+          {hasExternalPurchase && (
+            <Box sx={{ mb: 4, p: 2.5, bgcolor: '#FFFFFF', borderRadius: '16px', border: '1px dashed #CBD5E1' }}>
+              <Typography variant="caption" sx={{ fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: 0.8, display: 'block', mb: 1.5 }}>
+                Also Available On
+              </Typography>
+              <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1.5 }}>
+                {amazonUrl && (
+                  <Button
+                    component="a"
+                    href={amazonUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    startIcon={
+                      <Box
+                        component="span"
+                        sx={{
+                          fontWeight: 900,
+                          fontSize: '1rem',
+                          color: '#FF9900',
+                          fontFamily: 'sans-serif',
+                          lineHeight: 1,
+                        }}
+                      >
+                        a
+                      </Box>
+                    }
+                    sx={{
+                      borderColor: '#FF9900',
+                      color: '#232F3E',
+                      fontWeight: 700,
+                      borderRadius: '25px',
+                      px: 2.5,
+                      py: 0.8,
+                      bgcolor: '#FFFDF9',
+                      textTransform: 'none',
+                      '&:hover': {
+                        bgcolor: '#FF9900',
+                        color: '#FFFFFF',
+                        borderColor: '#FF9900',
+                      },
+                    }}
+                  >
+                    Buy on Amazon
+                  </Button>
+                )}
+                {flipkartUrl && (
+                  <Button
+                    component="a"
+                    href={flipkartUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    startIcon={
+                      <Box
+                        component="span"
+                        sx={{
+                          fontWeight: 900,
+                          fontSize: '1rem',
+                          color: '#2874F0',
+                          fontStyle: 'italic',
+                          lineHeight: 1,
+                        }}
+                      >
+                        F
+                      </Box>
+                    }
+                    sx={{
+                      borderColor: '#2874F0',
+                      color: '#172337',
+                      fontWeight: 700,
+                      borderRadius: '25px',
+                      px: 2.5,
+                      py: 0.8,
+                      bgcolor: '#F5F8FF',
+                      textTransform: 'none',
+                      '&:hover': {
+                        bgcolor: '#2874F0',
+                        color: '#FFFFFF',
+                        borderColor: '#2874F0',
+                      },
+                    }}
+                  >
+                    Buy on Flipkart
+                  </Button>
+                )}
+                {externalUrl && (
+                  <Button
+                    component="a"
+                    href={externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    startIcon={<ShoppingBagOutlinedIcon sx={{ color: '#00B4D8' }} />}
+                    sx={{
+                      borderColor: '#00B4D8',
+                      color: '#0F4C81',
+                      fontWeight: 700,
+                      borderRadius: '25px',
+                      px: 2.5,
+                      py: 0.8,
+                      bgcolor: '#F0FDF4',
+                      textTransform: 'none',
+                      '&:hover': {
+                        bgcolor: '#00B4D8',
+                        color: '#FFFFFF',
+                        borderColor: '#00B4D8',
+                      },
+                    }}
+                  >
+                    Buy Store Link
+                  </Button>
+                )}
+              </Stack>
+            </Box>
+          )}
 
           {/* Guarantee Badges */}
           <Paper elevation={0} sx={{ p: 2.5, bgcolor: '#F8FAFC', borderRadius: '16px', border: '1px solid #E2E8F0' }}>

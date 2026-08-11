@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS products (
   color VARCHAR(100) DEFAULT 'Matte Black',
   image_url VARCHAR(500),
   is_featured BOOLEAN DEFAULT FALSE,
+  amazon_link VARCHAR(500),
+  flipkart_link VARCHAR(500),
+  external_link VARCHAR(500),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
